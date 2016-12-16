@@ -1,0 +1,106 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<form action ="" method="post">
+
+{% csrf_token %}
+  <h1>NOdues Form</h1>
+  <h2>UserName : {{ request.user.username }} </h2>
+{% for student in library_list %}
+    {% if  student.username == request.user.username %}
+        <br> library
+       {% if student.clear %}
+           ------No_dues
+       {% else %}
+           ------Dues_left
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% for student in gymkhana_list %}
+    {% if  student.username == request.user.username %}
+        <br> gymkhana
+        {% if student.clear %}
+           ------No_dues
+       {% else %}
+           ------Dues_left
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+
+{% for student in csedept_list %}
+    {% if  student.username == request.user.username %}
+       <br> CSE_DEPARTMENT
+        {% if student.clear %}
+           ------No_dues
+       {% else %}
+           ------Dues_left
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+
+{% for student in subhansirihostel_list %}
+    {% if  student.username == request.user.username %}
+       <br>  Subhansirihostel
+        {% if student.clear %}
+           ------No_dues
+       {% else %}
+           ------Dues_left
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+
+{% for student in umiamhostel_list %}
+    {% if  student.username == request.user.username %}
+       <br>  Umiam_hostel
+        {% if student.clear %}
+           ------No_dues
+       {% else %}
+           ------Dues_left
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+
+{% for student in dhasirihostel_list %}
+    {% if  student.username == request.user.username %}
+        <br> Dhansirihostel
+        {% if student.clear %}
+           ------No_dues
+       {% else %}
+           ------Dues_left
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+
+{% for student in cc_list %}
+    {% if  student.username == request.user.username %}
+        <br> Computercenter
+        {% if student.clear %}
+           ------No_dues
+       {% else %}
+           ------Dues_left
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+</form>
+<!--<form action ="{% url 'log:clearlibrary' %}" method="post">
+    {% csrf_token %}
+    {% for student in library_list %}
+
+    <input type="checkbox" name="student" id="student{{ forloop.counter }}" name="student" value="{{ student.id }}"/>
+    <label for="student{{ forloop.counter }}">
+        {{ student.username }}
+        {% if student.clear %}
+            <img src="http://i.imgur.com/b9b13Rd.png"/>
+        {% endif %}
+
+    </label><br/>
+{% endfor %}
+<input type="submit" value="clear" />
+</form> -->

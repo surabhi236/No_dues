@@ -1,0 +1,19 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action ="{% url 'log:clearcc' %}" method="post">
+    {% csrf_token %}
+    {% for student in cc_list %}
+
+    <input type="checkbox" name="student" id="student{{ forloop.counter }}" name="student" value="{{ student.id }}"/>
+    <label for="student{{ forloop.counter }}">
+        {{ student.username }}
+        {% if student.clear %}
+            <img src="http://i.imgur.com/b9b13Rd.png"/>
+        {% endif %}
+
+    </label><br/>
+{% endfor %}
+<input type="submit" value="clear" />
+<input type="submit" name='clearall' value="clearall" />
+<input type="submit" name='deselect' value="deselect" />
+</form>
